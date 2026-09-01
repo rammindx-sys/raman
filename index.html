@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sangeet Premium Store — girls premium clothes. Order online and get WhatsApp confirmation." />
+  <meta name="theme-color" content="#8d103c" />
+  <title>Sangeet Premium Store | Girls Premium Clothes</title>
+  <style>
+    :root{--brand:#8d103c;--brand-2:#b30f4c;--brand-dark:#65082a;--ink:#171717;--muted:#6d6d75;--line:#ece8eb;--soft:#faf7f9;--success:#17884c;--danger:#d92c3a;--shadow:0 10px 28px rgba(24,10,17,.10);--radius:18px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fff 0%,#fffafb 100%);color:var(--ink)}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    a{text-decoration:none;color:inherit}
+    .topbar{background:var(--brand);color:#fff;padding:9px 16px;font-size:13px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .topbar span{display:flex;align-items:center;gap:7px}
+    .container{width:min(1180px,calc(100% - 24px));margin:0 auto}
+    header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+    .hero{padding:18px 0 14px}
+    .brand-row{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-mark{width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#efc0cf,#fff);display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(141,16,60,.08);font-size:27px}
+    .brand-copy h1{margin:0;font-family:Georgia,serif;font-size:27px;line-height:1;color:var(--brand-dark)}
+    .brand-copy p{margin:5px 0 0;color:#666;font-weight:600;letter-spacing:.2px;font-size:12px}
+    .tagline{text-align:center;font-family:Georgia,serif;font-style:italic;color:#555;font-size:15px;max-width:300px;line-height:1.3}
+    .header-cart{border:0;background:#fff;position:relative;width:48px;height:48px;border-radius:50%;box-shadow:0 3px 12px rgba(0,0,0,.08);font-size:22px}
+    .badge{position:absolute;right:-1px;top:-2px;background:var(--brand);color:#fff;font-size:11px;min-width:22px;height:22px;border-radius:99px;display:grid;place-items:center;padding:0 6px;font-weight:800}
+    .filters{display:flex;gap:9px;overflow:auto;padding:9px 0 16px;scrollbar-width:none}
+    .filters::-webkit-scrollbar{display:none}
+    .filter{border:1px solid var(--line);background:#fff;color:#333;border-radius:999px;padding:9px 14px;white-space:nowrap;font-weight:700;font-size:13px;transition:.2s}
+    .filter.active,.filter:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+    main{padding:20px 0 110px}
+    .section-heading{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:14px}
+    .section-heading h2{margin:0;font-size:24px}
+    .section-heading p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 7px 18px rgba(25,12,18,.06);transition:transform .22s,box-shadow .22s}
+    .card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+    .img-wrap{aspect-ratio:4/4.6;background:#f2eff1;overflow:hidden}
+    .img-wrap img{width:100%;height:100%;display:block;object-fit:cover}
+    .card-body{padding:12px}
+    .category{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--brand);font-weight:800}
+    .card h3{font-size:14px;line-height:1.3;margin:6px 0 8px;min-height:36px}
+    .desc{font-size:12px;color:var(--muted);line-height:1.4;margin:0 0 10px;min-height:34px}
+    .price-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .price{font-size:17px;font-weight:900;color:var(--brand-dark)}
+    .add-btn{border:0;background:var(--brand);color:#fff;border-radius:10px;padding:10px 11px;font-weight:800;font-size:12px;transition:.2s}
+    .add-btn:hover{background:var(--brand-dark)}
+    .add-btn:active,.floating-cart:active{transform:scale(.96)}
+    .trust{margin-top:18px;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:9px}
+    .trust-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#444}
+    .trust-item b{color:#222}
+    .footer{border-top:1px solid var(--line);padding:24px 0 90px;background:#fff}
+    .footer-inner{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    .floating-cart{position:fixed;right:16px;bottom:74px;width:58px;height:58px;border:0;border-radius:50%;background:var(--brand);color:#fff;box-shadow:0 12px 28px rgba(141,16,60,.32);font-size:23px;z-index:35}
+    .wa{position:fixed;left:16px;bottom:14px;border-radius:999px;background:#1f9c52;color:#fff;padding:13px 17px;font-size:13px;font-weight:800;box-shadow:0 8px 22px rgba(31,156,82,.25);z-index:35}
+    .overlay{position:fixed;inset:0;background:rgba(21,7,13,.48);display:none;align-items:flex-end;justify-content:center;padding:0;z-index:50}
+    .overlay.show{display:flex}
+    .sheet{width:min(760px,100%);max-height:92vh;background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.22);overflow:auto;animation:slideUp .25s ease}
+    @keyframes slideUp{from{transform:translateY(30px);opacity:.5}to{transform:translateY(0);opacity:1}}
+    .sheet-head{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:16px;display:flex;align-items:center;justify-content:space-between;z-index:2}
+    .sheet-head h3{margin:0;font-size:18px}
+    .close{border:0;background:#f5f2f4;width:36px;height:36px;border-radius:50%;font-size:20px}
+    .cart-list{padding:10px 16px 4px}
+    .cart-item{display:grid;grid-template-columns:60px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+    .cart-thumb{width:60px;height:68px;border-radius:10px;overflow:hidden;background:#eee}
+    .cart-thumb img{width:100%;height:100%;object-fit:cover}
+    .cart-name{font-size:13px;font-weight:800;line-height:1.3}
+    .cart-meta{font-size:11px;color:var(--muted);margin-top:4px}
+    .qty-row{display:flex;align-items:center;gap:7px;margin-top:7px}
+    .qty-btn{width:28px;height:28px;border:1px solid var(--line);border-radius:8px;background:#fff;font-weight:900}
+    .qty{min-width:18px;text-align:center;font-weight:800}
+    .remove{border:0;background:transparent;color:var(--danger);font-size:12px;font-weight:800;padding:3px}
+    .item-total{font-weight:900;color:var(--brand-dark);font-size:13px;text-align:right}
+    .cart-summary{padding:14px 16px;border-top:1px solid var(--line);background:#fff}
+    .summary-row{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-size:13px}
+    .summary-row.grand{font-size:17px;font-weight:900;padding-top:8px}
+    .sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:12px}
+    .btn{border:1px solid var(--line);background:#fff;color:#222;border-radius:11px;padding:12px;font-weight:800}
+    .btn.primary{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .empty{padding:35px 18px;text-align:center;color:var(--muted)}
+    .empty strong{display:block;color:#222;font-size:16px;margin-bottom:6px}
+    .checkout{padding:14px 16px 22px}
+    .notice{background:#fff7ed;border:1px solid #fde2be;color:#7b5315;border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.45;margin-bottom:12px}
+    .form-grid{display:grid;gap:12px}
+    label{font-size:12px;font-weight:800;color:#333;display:block;margin-bottom:6px}
+    input,textarea{width:100%;border:1px solid #ddd6da;border-radius:10px;padding:12px;background:#fff;outline:none;transition:.2s}
+    input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(141,16,60,.09)}
+    textarea{min-height:92px;resize:vertical}
+    .required{color:var(--danger)}
+    .status{display:none;border-radius:12px;padding:12px;font-size:13px;margin-bottom:12px}
+    .status.show{display:block}
+    .status.error{background:#fff0f0;color:#9b1525;border:1px solid #ffd3d8}
+    .success-card{margin:16px;background:#effaf3;border:1px solid #c8efd5;border-radius:16px;padding:20px;text-align:center}
+    .check{width:62px;height:62px;border-radius:50%;background:#21a45b;color:#fff;display:grid;place-items:center;font-size:30px;margin:0 auto 12px}
+    .success-card h3{margin:0 0 8px;font-size:19px}
+    .success-card p{margin:0;color:#476153;font-size:13px;line-height:1.5}
+    .success-wa{display:inline-flex;margin-top:14px;background:#1f9c52;color:#fff;padding:11px 15px;border-radius:10px;font-weight:800;font-size:13px}
+    @media (min-width:720px){
+      .container{width:min(1180px,calc(100% - 40px))}
+      .hero{padding:22px 0 15px}.brand-copy h1{font-size:32px}.tagline{font-size:18px;max-width:none}
+      .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card-body{padding:14px}.card h3{font-size:15px}
+      .trust{grid-template-columns:repeat(3,1fr);padding:16px}
+      .overlay{align-items:center;padding:18px}.sheet{border-radius:24px;max-height:88vh}
+    }
+    @media (min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.topbar{padding-left:max(16px,calc((100% - 1180px)/2));padding-right:max(16px,calc((100% - 1180px)/2))}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <span>📍 Rajasthan, India</span>
+    <span>✉️ ratnmindx@gmail.com</span>
+  </div>
+
+  <header>
+    <div class="container hero">
+      <div class="brand-row">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">👗</div>
+          <div class="brand-copy">
+            <h1>Sangeet</h1>
+            <p>Premium Store</p>
+          </div>
+        </div>
+        <div class="tagline">Born to shine, dressed to lead ✨</div>
+        <button class="header-cart" id="headerCartBtn" aria-label="Open shopping cart">🛒<span class="badge" id="headerBadge">0</span></button>
+      </div>
+      <div class="filters" id="filters" aria-label="Product categories">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="Hoodies">Hoodies</button>
+        <button class="filter" data-filter="Sweatshirts">Sweatshirts</button>
+        <button class="filter" data-filter="Jackets">Jackets</button>
+        <button class="filter" data-filter="Girls Premium Clothes">Girls Premium Clothes</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section>
+        <div class="section-heading">
+          <div>
+            <h2>Premium Picks</h2>
+            <p>Comfort-first styles for your everyday look.</p>
+          </div>
+          <div id="resultCount" style="font-size:12px;color:var(--muted)"></div>
+        </div>
+        <div class="grid" id="productGrid"></div>
+      </section>
+
+      <section class="trust" aria-label="Why order with us">
+        <div class="trust-item"><span>📦</span><div><b>Simple ordering</b><br>Choose products and send your order online.</div></div>
+        <div class="trust-item"><span>💬</span><div><b>WhatsApp confirmation</b><br>We contact you to confirm availability and delivery.</div></div>
+        <div class="trust-item"><span>🔒</span><div><b>No online payment</b><br>This website collects orders only — no payment gateway.</div></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Sangeet Premium Store</div>
+      <div>Rajasthan, India · ratnmindx@gmail.com</div>
+    </div>
+  </footer>
+
+  <button class="floating-cart" id="floatingCart" aria-label="Open cart">🛒<span class="badge" id="floatingBadge">0</span></button>
+  <a class="wa" id="floatingWa" href="#" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+
+  <!-- Cart modal -->
+  <div class="overlay" id="cartOverlay" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="sheet-head"><h3 id="cartTitle">Your Cart</h3><button class="close" data-close="cartOverlay" aria-label="Close cart">×</button></div>
+      <div class="cart-list" id="cartList"></div>
+      <div class="cart-summary" id="cartSummary"></div>
+    </div>
+  </div>
+
+  <!-- Checkout modal -->
+  <div class="overlay" id="checkoutOverlay" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <div class="sheet-head"><h3 id="checkoutTitle">Place Your Order</h3><button class="close" data-close="checkoutOverlay" aria-label="Close checkout">×</button></div>
+      <div class="checkout">
+        <div class="notice">This is an order collection form. No online payment is taken here. We will contact you on WhatsApp to confirm your order, pricing, availability and delivery.</div>
+        <div class="status error" id="formStatus"></div>
+        <form id="orderForm" action="https://formspree.io/f/xoeqeoqy" method="POST">
+          <div class="form-grid">
+            <div><label for="customerName">Customer Name <span class="required">*</span></label><input id="customerName" name="customer_name" required autocomplete="name" placeholder="Enter your full name"></div>
+            <div><label for="phone">Phone Number <span class="required">*</span></label><input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="Enter your WhatsApp number"></div>
+            <div><label for="address">Delivery Address <span class="required">*</span></label><textarea id="address" name="delivery_address" required autocomplete="street-address" placeholder="House no., Street, Area, City, Pincode, Rajasthan"></textarea></div>
+            <div><label for="instructions">Special Instructions</label><textarea id="instructions" name="special_instructions" placeholder="Size preference, preferred delivery time, etc."></textarea></div>
+          </div>
+          <!-- Formspree receives this compiled, readable order summary as a single email field. -->
+          <input type="hidden" id="orderSummaryField" name="order_summary" value="">
+          <input type="hidden" name="_subject" value="New Order — Sangeet Premium Store">
+          <input type="hidden" name="store_name" value="Sangeet Premium Store">
+          <input type="hidden" name="store_email" value="ratnmindx@gmail.com">
+          <div class="sheet-actions"><button type="button" class="btn" id="backToCart">← Back to Cart</button><button class="btn primary" type="submit" id="submitOrder">Place Order →</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success modal -->
+  <div class="overlay" id="successOverlay" aria-hidden="true">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+      <div class="sheet-head"><h3>Order Confirmation</h3><button class="close" data-close="successOverlay" aria-label="Close">×</button></div>
+      <div class="success-card">
+        <div class="check">✓</div>
+        <h3 id="successTitle">Order placed!</h3>
+        <p>Sangeet Premium Store will contact you on WhatsApp to confirm.</p>
+        <a class="success-wa" id="successWa" href="#" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SHOP = {
+      name: 'Sangeet Premium Store',
+      email: 'ratnmindx@gmail.com',
+      location: 'Rajasthan, India',
+      // Replace this with the shop's WhatsApp number in international format, digits only.
+      // Example: 919876543210  (do not include +, spaces, or dashes)
+      whatsappNumber: 'YOUR_NUMBER_WITHOUT_PLUS'
+    };
+
+    const PRODUCTS = [
+      {id:'p1',name:"Fancy Designer Printed Sweatshirts Round Neck Hoodie For Women's",price:299,category:'Sweatshirts',desc:'Soft everyday layer with a playful designer print.',image:'https://i.ibb.co/0RP9vnqX/tnwub-512.avif'},
+      {id:'p2',name:'New Stylish California Fuzzy Sweatshirt Jacket',price:349,category:'Jackets',desc:'Warm fuzzy outer layer with a relaxed street-style fit.',image:'https://i.ibb.co/Q7sQzG81/jooun-512.avif'},
+      {id:'p3',name:"Women's Crop Hoodie Winter Casual Wear",price:349,category:'Hoodies',desc:'Soft fabric, relaxed fit and easy everyday styling.',image:'https://i.ibb.co/JRXMCKP8/4pb0x-512.avif'},
+      {id:'p4',name:'Psampa Colorblock Letter Graphic Kangaroo Hoodie',price:399,category:'Hoodies',desc:'Bold colorblock look with a cozy kangaroo pocket.',image:'https://i.ibb.co/N2YZxNsP/z0c43-512.avif'},
+      {id:'p5',name:'Cute Graphic Print Winter Hoodie For Women',price:299,category:'Hoodies',desc:'Casual printed hoodie designed for comfortable daily wear.',image:'https://i.ibb.co/0RP9vnqX/tnwub-512.avif'},
+      {id:'p6',name:'California Oversized Printed Sweatshirt',price:349,category:'Sweatshirts',desc:'Easy oversized silhouette for a relaxed premium feel.',image:'https://i.ibb.co/Q7sQzG81/jooun-512.avif'},
+      {id:'p7',name:'Stylish Colorblock Half-Zip Sweatshirt',price:379,category:'Sweatshirts',desc:'Half-zip sporty layer with a clean modern finish.',image:'https://i.ibb.co/JRXMCKP8/4pb0x-512.avif'},
+      {id:'p8',name:'Brooklyn Letter Graphic Hoodie Sweatshirt',price:399,category:'Hoodies',desc:'Statement graphic hoodie for a confident casual look.',image:'https://i.ibb.co/N2YZxNsP/z0c43-512.avif'}
+    ];
+
+    const STORAGE_KEY = 'sangeet_premium_store_cart_v1';
+    let activeFilter = 'All';
+    let cart = loadCart();
+
+    const els = {
+      productGrid: document.getElementById('productGrid'),
+      resultCount: document.getElementById('resultCount'),
+      cartList: document.getElementById('cartList'),
+      cartSummary: document.getElementById('cartSummary'),
+      headerBadge: document.getElementById('headerBadge'),
+      floatingBadge: document.getElementById('floatingBadge'),
+      orderSummaryField: document.getElementById('orderSummaryField'),
+      orderForm: document.getElementById('orderForm'),
+      formStatus: document.getElementById('formStatus'),
+      submitOrder: document.getElementById('submitOrder'),
+      floatingWa: document.getElementById('floatingWa'),
+      successWa: document.getElementById('successWa')
+    };
+
+    function money(n){ return new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n); }
+    function getProduct(id){ return PRODUCTS.find(p=>p.id===id); }
+    function loadCart(){
+      try{
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        return Array.isArray(data.items) ? data.items.filter(x=>getProduct(x.id) && x.qty>0).map(x=>({id:x.id,qty:Math.min(99,Math.floor(x.qty))})) : [];
+      }catch(e){ return []; }
+    }
+    function saveCart(){ localStorage.setItem(STORAGE_KEY, JSON.stringify({items:cart})); }
+    function cartCount(){ return cart.reduce((s,x)=>s+x.qty,0); }
+    function cartTotal(){ return cart.reduce((s,x)=>{ const p=getProduct(x.id); return s+p.price*x.qty; },0); }
+
+    function renderProducts(){
+      const list = activeFilter==='All' ? PRODUCTS : PRODUCTS.filter(p=>p.category===activeFilter || (activeFilter==='Girls Premium Clothes'));
+      els.resultCount.textContent = list.length + ' styles';
+      els.productGrid.innerHTML = list.map(p=>`
+        <article class="card">
+          <div class="img-wrap"><img loading="lazy" src="${p.image}" alt="${escapeHtml(p.name)}" onerror="this.style.opacity='.2'" /></div>
+          <div class="card-body">
+            <div class="category">${escapeHtml(p.category)}</div>
+            <h3>${escapeHtml(p.name)}</h3>
+            <p class="desc">${escapeHtml(p.desc)}</p>
+            <div class="price-row"><div class="price">${money(p.price)}</div><button class="add-btn" data-add="${p.id}">🛒 Add to Cart</button></div>
+          </div>
+        </article>`).join('');
+    }
+
+    function renderCart(){
+      const count=cartCount();
+      els.headerBadge.textContent=count;
+      els.floatingBadge.textContent=count;
+      if(!cart.length){
+        els.cartList.innerHTML='<div class="empty"><strong>Your cart is empty</strong>Add a product to start your order.</div>';
+        els.cartSummary.innerHTML='';
+        return;
+      }
+      els.cartList.innerHTML=cart.map(item=>{
+        const p=getProduct(item.id), total=p.price*item.qty;
+        return `<div class="cart-item">
+          <div class="cart-thumb"><img loading="lazy" src="${p.image}" alt="${escapeHtml(p.name)}"></div>
+          <div>
+            <div class="cart-name">${escapeHtml(p.name)}</div>
+            <div class="cart-meta">${money(p.price)} each</div>
+            <div class="qty-row">
+              <button class="qty-btn" data-qty="${p.id}" data-change="-1" aria-label="Decrease quantity">−</button>
+              <span class="qty">${item.qty}</span>
+              <button class="qty-btn" data-qty="${p.id}" data-change="1" aria-label="Increase quantity">+</button>
+              <button class="remove" data-remove="${p.id}">Remove</button>
+            </div>
+          </div>
+          <div class="item-total">${money(total)}</div>
+        </div>`;
+      }).join('');
+      const total=cartTotal();
+      els.cartSummary.innerHTML=`<div class="summary-row"><span>Items</span><b>${count}</b></div><div class="summary-row"><span>Subtotal</span><b>${money(total)}</b></div><div class="summary-row"><span>Delivery</span><b>To be confirmed</b></div><div class="summary-row grand"><span>Grand Total</span><span>${money(total)}</span></div><div class="sheet-actions"><button class="btn" id="continueShopping">← Continue Shopping</button><button class="btn primary" id="placeOrderBtn">Place Order →</button></div>`;
+    }
+
+    function addToCart(id){
+      const found=cart.find(x=>x.id===id);
+      if(found) found.qty=Math.min(99,found.qty+1); else cart.push({id,qty:1});
+      saveCart(); renderCart(); openOverlay('cartOverlay');
+    }
+    function changeQty(id,delta){
+      const found=cart.find(x=>x.id===id); if(!found) return;
+      found.qty=Math.max(0,Math.min(99,found.qty+delta));
+      if(found.qty===0) cart=cart.filter(x=>x.id!==id);
+      saveCart(); renderCart();
+    }
+    function removeItem(id){ cart=cart.filter(x=>x.id!==id); saveCart(); renderCart(); }
+
+    function orderSummary(extra={}){
+      const lines=['SANGEET PREMIUM STORE — NEW ORDER','================================',''];
+      cart.forEach((item,i)=>{const p=getProduct(item.id);lines.push(`${i+1}. ${p.name}`,`   Quantity: ${item.qty}`,`   Unit Price: ${money(p.price)}`,`   Line Total: ${money(p.price*item.qty)}`,'');});
+      lines.push(`GRAND TOTAL: ${money(cartTotal())}`,'','CUSTOMER DETAILS','----------------',`Name: ${extra.name||''}`,`Phone: ${extra.phone||''}`,`Delivery Address: ${extra.address||''}`,`Special Instructions: ${extra.instructions||'None'}`,'',`Store: ${SHOP.name}`,`Store Email: ${SHOP.email}`,`Location: ${SHOP.location}`);
+      return lines.join('\n');
+    }
+
+    function openOverlay(id){ const el=document.getElementById(id); el.classList.add('show');el.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'; }
+    function closeOverlay(id){ const el=document.getElementById(id);el.classList.remove('show');el.setAttribute('aria-hidden','true');if(!document.querySelector('.overlay.show')) document.body.style.overflow=''; }
+
+    function checkout(){
+      if(!cart.length){ closeOverlay('cartOverlay'); return; }
+      closeOverlay('cartOverlay');
+      els.formStatus.className='status error';els.formStatus.textContent='';
+      openOverlay('checkoutOverlay');
+      setTimeout(()=>document.getElementById('customerName').focus(),100);
+    }
+
+    function setWhatsAppLinks(){
+      const hasNumber=/^\d{10,15}$/.test(SHOP.whatsappNumber);
+      const text=encodeURIComponent(`Hello ${SHOP.name}, I would like to ask about an order.`);
+      const href=hasNumber ? `https://wa.me/${SHOP.whatsappNumber}?text=${text}` : `https://wa.me/?text=${text}`;
+      els.floatingWa.href=href; els.successWa.href=href;
+      if(!hasNumber){
+        els.floatingWa.title='Add the shop WhatsApp number in the SHOP object in this HTML file.';
+        els.successWa.title='Add the shop WhatsApp number in the SHOP object in this HTML file.';
+      }
+    }
+
+    function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+
+    document.getElementById('filters').addEventListener('click',e=>{
+      const btn=e.target.closest('[data-filter]');if(!btn)return;
+      activeFilter=btn.dataset.filter;
+      document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x===btn));
+      renderProducts();
+    });
+
+    document.getElementById('productGrid').addEventListener('click',e=>{ const btn=e.target.closest('[data-add]'); if(btn) addToCart(btn.dataset.add); });
+    document.getElementById('cartList').addEventListener('click',e=>{
+      const qty=e.target.closest('[data-qty]'); if(qty){ changeQty(qty.dataset.qty, Number(qty.dataset.change)); return; }
+      const rm=e.target.closest('[data-remove]'); if(rm){ removeItem(rm.dataset.remove); }
+    });
+    document.getElementById('cartSummary').addEventListener('click',e=>{
+      if(e.target.closest('#continueShopping')) closeOverlay('cartOverlay');
+      if(e.target.closest('#placeOrderBtn')) checkout();
+    });
+    document.getElementById('headerCartBtn').addEventListener('click',()=>{renderCart();openOverlay('cartOverlay');});
+    document.getElementById('floatingCart').addEventListener('click',()=>{renderCart();openOverlay('cartOverlay');});
+    document.getElementById('backToCart').addEventListener('click',()=>{closeOverlay('checkoutOverlay');openOverlay('cartOverlay');});
+
+    document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeOverlay(btn.dataset.close)));
+    document.querySelectorAll('.overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov) closeOverlay(ov.id);}));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape') document.querySelectorAll('.overlay.show').forEach(x=>closeOverlay(x.id));});
+
+    els.orderForm.addEventListener('submit',async e=>{
+      e.preventDefault();
+      if(!cart.length){return;}
+      const name=document.getElementById('customerName').value.trim();
+      const phone=document.getElementById('phone').value.trim();
+      const address=document.getElementById('address').value.trim();
+      const instructions=document.getElementById('instructions').value.trim();
+      els.orderSummaryField.value=orderSummary({name,phone,address,instructions});
+      els.formStatus.className='status error'; els.formStatus.textContent='';
+      els.submitOrder.disabled=true; els.submitOrder.textContent='Sending Order…';
+      try{
+        const response=await fetch(els.orderForm.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(els.orderForm)});
+        if(!response.ok) throw new Error('Submission failed');
+        localStorage.removeItem(STORAGE_KEY);cart=[];renderCart();closeOverlay('checkoutOverlay');openOverlay('successOverlay');els.orderForm.reset();
+      }catch(err){
+        els.formStatus.textContent='We could not send the order right now. Please check your internet connection and try again.';
+        els.formStatus.classList.add('show');
+      }finally{els.submitOrder.disabled=false;els.submitOrder.textContent='Place Order →';}
+    });
+
+    document.getElementById('year').textContent=new Date().getFullYear();
+    renderProducts();renderCart();setWhatsAppLinks();
+  </script>
+</body>
+</html>
